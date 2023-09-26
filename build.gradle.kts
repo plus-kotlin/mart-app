@@ -1,15 +1,19 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    val kotlinVersion = "1.8.22"
+
     id("org.springframework.boot") version "3.1.3"
     id("io.spring.dependency-management") version "1.1.3"
-    kotlin("jvm") version "1.8.22"
-    kotlin("plugin.spring") version "1.8.22"
-    kotlin("plugin.jpa") version "1.8.22"
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
+    kotlin("kapt") version "1.8.22"
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
+
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -25,14 +29,32 @@ repositories {
     mavenCentral()
 }
 
+object Versions{
+    const val QUERY_DSL = "5.0.0"
+}
+
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-web") {
+        exclude(module= "spring-boot-starter-tomcat")
+    }
+    implementation("org.springframework.boot:spring-boot-starter-undertow")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.h2database:h2")
     annotationProcessor("org.projectlombok:lombok")
+
+    implementation("com.querydsl:querydsl-jpa:${Versions.QUERY_DSL}:jakarta")
+    kapt("com.querydsl:querydsl-apt:${Versions.QUERY_DSL}:jakarta")
+    kapt("jakarta.persistence:jakarta.persistence-api")
+    testAnnotationProcessor("com.querydsl:querydsl-apt:${Versions.QUERY_DSL}:jakarta")
+    testAnnotationProcessor("jakarta.persistence:jakarta.persistence-api")
+    testImplementation("com.querydsl:querydsl-jpa:${Versions.QUERY_DSL}:jakarta")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
