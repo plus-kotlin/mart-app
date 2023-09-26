@@ -1,7 +1,6 @@
 package com.example.martapp.order.router
 
 import com.example.martapp.order.business.OrderProductReadService
-import com.example.martapp.order.business.OrderReadService
 import com.example.martapp.order.business.OrderSaveService
 import com.example.martapp.order.router.dto.OrderProductResponseDto
 import com.example.martapp.order.router.dto.OrderRequestDto
@@ -15,13 +14,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class OrderRouter(
-    private val orderReadService: OrderReadService,
     private val orderSaveService: OrderSaveService,
     private val orderProductReadService: OrderProductReadService
 ) {
-    @GetMapping("/order/{id}")
-    fun getOrder(@PathVariable id: Long): OrderResponseDto = orderReadService.getOrder(id)
-
     @PostMapping("/order")
     fun saveOrder(@RequestBody requestDto: OrderRequestDto): String = orderSaveService.saveOrder(OrderMapper.orderDtoToOrderModel(requestDto))
 
