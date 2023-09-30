@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository
 @Repository
 class OrderCommand(
     private val jpaRepository: OrderJpaRepository
-): OrderWriterRepository {
+) : OrderWriterRepository {
     override fun save(orderModel: OrderModel): String {
         jpaRepository.save(
             Order(
-            ordererName = orderModel.ordererName
-        )
+                ordererName = orderModel.ordererName
+            )
         )
         return "Success"
     }
