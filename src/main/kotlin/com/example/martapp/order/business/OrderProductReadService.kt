@@ -18,5 +18,4 @@ class OrderProductReadService(
             productPrice = model.productPrice
         )
     }
-
 }
