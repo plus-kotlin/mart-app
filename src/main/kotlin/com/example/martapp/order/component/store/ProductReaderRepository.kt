@@ -1,7 +1,7 @@
 package com.example.martapp.order.component.store
 
-import com.example.martapp.order.business.model.ProductModel
+import com.example.martapp.order.persistence.entity.Product
 
 interface ProductReaderRepository {
-    fun findById(id: Long): ProductModel
+    fun findById(id: Long): Product
 }
