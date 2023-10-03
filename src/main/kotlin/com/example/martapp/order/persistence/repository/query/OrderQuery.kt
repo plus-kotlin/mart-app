@@ -1,6 +1,5 @@
 package com.example.martapp.order.persistence.repository.query
 
-import com.example.martapp.order.business.model.OrderModel
 import com.example.martapp.order.component.store.OrderReaderRepository
 import com.example.martapp.order.persistence.entity.Order
 import com.example.martapp.order.persistence.entity.QOrder
@@ -14,8 +13,7 @@ class OrderQuery(
 
     private val qOrder: QOrder = QOrder("order")
 
-    override fun findById(id: Long): OrderModel {
-        val order = query.selectFrom(qOrder).where(qOrder.id.eq(id)).fetchOne() ?: throw NullPointerException("Not Found Order")
-        return OrderModel(id = order.id, ordererName = order.ordererName)
+    override fun findById(id: Long): Order {
+        return query.selectFrom(qOrder).where(qOrder.id.eq(id)).fetchOne() ?: throw NullPointerException("Not Found Order")
     }
 }

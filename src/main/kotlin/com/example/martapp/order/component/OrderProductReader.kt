@@ -12,15 +12,15 @@ class OrderProductReader(
 
     @Transactional // 필수는 아니지만 예제를 위해 추가
     fun getOrderProduct(orderId: Long, productId: Long): OrderProductModel {
-        val order = orderReader.getOrder(orderId)
-        val product = productReader.getProduct(productId)
+        val orderModel = orderReader.getOrder(orderId)
+        val productModel = productReader.getProduct(productId)
 
         return OrderProductModel(
-            orderId = order.id,
-            ordererName = order.ordererName,
-            productId = product.id,
-            productName = product.name,
-            productPrice = product.price
+            orderId = orderModel.id,
+            ordererName = orderModel.ordererName,
+            productId = productModel.productId,
+            productName = productModel.productName,
+            productPrice = productModel.productPrice
         )
     }
 }

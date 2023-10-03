@@ -1,7 +1,7 @@
 package com.example.martapp.order.component.store
 
-import com.example.martapp.order.business.model.OrderModel
+import com.example.martapp.order.persistence.entity.Order
 
 interface OrderWriterRepository {
-    fun save(orderModel: OrderModel): String
+    fun save(order: Order): String
 }
