@@ -2,12 +2,9 @@ package com.example.martapp.order.business
 
 import com.example.martapp.order.business.model.OrderProductModel
 import com.example.martapp.order.component.OrderProductReader
-import com.example.martapp.order.component.OrderReader
-import com.example.martapp.order.persistence.entity.Order
 import com.example.martapp.order.router.dto.OrderProductResponseDto
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
 import org.mockito.Mockito.anyLong
 import org.mockito.Mockito.`when`
 import org.mockito.kotlin.mock
@@ -24,10 +21,11 @@ class OrderProductReadServiceTest {
             productName = "상품 이름",
             productPrice = 10000.0
         )
+
         val orderProductReader: OrderProductReader = mock()
         `when`(orderProductReader.getOrderProduct(anyLong(), anyLong())).thenReturn(
             OrderProductModel(
-                orderId = givenOrderProductResponseDto.orderId,
+                orderId = 1L,
                 ordererName = givenOrderProductResponseDto.ordererName,
                 productId = givenOrderProductResponseDto.productId,
                 productName = givenOrderProductResponseDto.productName,
@@ -35,6 +33,7 @@ class OrderProductReadServiceTest {
             )
         )
         val orderProductReadService = OrderProductReadService(orderProductReader)
+        givenOrderProductResponseDto.productPrice = 20000.0
 
         // When
         val orderProductResponseDto = orderProductReadService.getOrderProduct(

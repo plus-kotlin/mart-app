@@ -10,6 +10,9 @@ class OrderProductReadService(
 ) {
     fun getOrderProduct(orderId: Long, productId: Long): OrderProductResponseDto {
         val model = orderProductReader.getOrderProduct(orderId, productId)
+
+        model.productPrice *= 2
+
         return OrderProductResponseDto(
             orderId = model.orderId,
             ordererName = model.ordererName,

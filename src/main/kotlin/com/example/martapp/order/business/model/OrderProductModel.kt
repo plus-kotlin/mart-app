@@ -5,5 +5,5 @@ data class OrderProductModel(
     val ordererName: String,
     val productId: Long,
     val productName: String,
-    val productPrice: Double
+    var productPrice: Double
 )
