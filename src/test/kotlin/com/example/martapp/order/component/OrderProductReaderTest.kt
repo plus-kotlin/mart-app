@@ -6,7 +6,7 @@ import com.example.martapp.order.business.model.ProductModel
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers.anyLong
-import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.kotlin.mock
 
 class OrderProductReaderTest {
@@ -24,14 +24,14 @@ class OrderProductReaderTest {
         val orderReader: OrderReader = mock()
         val productReader: ProductReader = mock()
 
-        Mockito.`when`(orderReader.getOrder(anyLong())).thenReturn(
+        `when`(orderReader.getOrder(anyLong())).thenReturn(
             OrderModel(
                 id = givenOrderProductModel.orderId,
                 ordererName = givenOrderProductModel.ordererName
             )
         )
 
-        Mockito.`when`(productReader.getProduct(anyLong())).thenReturn(
+        `when`(productReader.getProduct(anyLong())).thenReturn(
             ProductModel(
                 productId = givenOrderProductModel.productId,
                 productName = givenOrderProductModel.productName,

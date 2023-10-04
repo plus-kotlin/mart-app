@@ -1,2 +1,18 @@
 GET {{host}}/actuator/health
 Accept: application/json
+###
+
+POST {{host}}/order
+Content-Type: application/json
+
+{
+  "ordererName": "주문 이름 테스트"
+}
+
+###
+GET {{host}}/order/1
+Accept: application/json
+
+###
+GET {{host}}/order/1/product/1
+Accept: application/json
