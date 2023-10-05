@@ -40,6 +40,24 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-undertow")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
+    // securiry
+    implementation ("org.springframework.boot:spring-boot-starter-security")
+    implementation ("org.springframework.boot:spring-boot-starter-oauth2-client")
+
+    // jwt
+    implementation ("io.jsonwebtoken:jjwt:0.9.1")
+
+    // HtmlCharacterEscapes
+    implementation ("org.apache.commons:commons-text:1.10.0")
+    implementation ("commons-io:commons-io:2.11.0")
+
+    // API 문서 자동화, Swagger
+    implementation ("org.springdoc:springdoc-openapi-ui:1.6.15")
+
+    // AOP
+    implementation ("org.springframework.boot:spring-boot-starter-aop")
+
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
@@ -48,12 +66,12 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     annotationProcessor("org.projectlombok:lombok")
 
-    implementation("com.querydsl:querydsl-jpa:${Versions.QUERY_DSL}:jakarta")
-    kapt("com.querydsl:querydsl-apt:${Versions.QUERY_DSL}:jakarta")
+    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
     kapt("jakarta.persistence:jakarta.persistence-api")
-    testAnnotationProcessor("com.querydsl:querydsl-apt:${Versions.QUERY_DSL}:jakarta")
+    testAnnotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
     testAnnotationProcessor("jakarta.persistence:jakarta.persistence-api")
-    testImplementation("com.querydsl:querydsl-jpa:${Versions.QUERY_DSL}:jakarta")
+    testImplementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
