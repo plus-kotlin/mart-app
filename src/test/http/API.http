@@ -1,2 +1,13 @@
 GET {{host}}/actuator/health
 Accept: application/json
+###
+
+POST {{host}}/order/register
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ordererName": "이름",
+  "ordererAddress": "주소",
+  "totalPrice": 100000
+}
