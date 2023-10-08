@@ -1,11 +1,6 @@
 package com.example.martapp.order.persistence
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import lombok.NoArgsConstructor
 
 @Entity
@@ -13,11 +8,17 @@ import lombok.NoArgsConstructor
 @NoArgsConstructor
 class OrderEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0,
+    var id: Long? = null,
     @Column(name = "username")
     var ordererName: String,
     @Column(name = "address")
     var ordererAddress: String,
     @Column(name = "totalPrice")
-    var totalPrice: Double,
-)
+    var totalPrice: Double
+) {
+    init {
+        if (ordererName.isBlank()) {
+            throw IllegalArgumentException("Not Blank ordererName")
+        }
+    }
+}
